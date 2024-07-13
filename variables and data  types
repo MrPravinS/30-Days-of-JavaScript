@@ -1,0 +1,51 @@
+// var num = 29;
+// console.log(num);
+
+//let name = "Pravin";
+//console.log(name);
+
+
+// const myBool = true;
+//console.log(myBool);
+
+// myBool = false;
+// console.log(myBool);
+
+// let num = 2;
+// let name = "Pravin";
+// let myBool = true;
+// let myObj = {
+//     myName:"Ajay",
+//     age :21
+//  }
+
+// let myArr = [1,2,"Pravin",2,45]
+
+// console.log(typeof num);
+// console.log(typeof name);
+// console.log(typeof myArr);
+// console.log(typeof myObj);
+// console.log(typeof myBool);444
+
+
+// const num = 3;
+// console.log(num);
+
+// num = 9;
+//  console.log(num);
+
+const arr = [1,2,3]
+arr.push(3)
+console.log(arr);
+
+const obj ={
+    name:'Pravin'
+}
+
+obj.name = "ajay"
+
+console.log(obj);
+
+obj = {
+    name:"Ajayv"
+}
