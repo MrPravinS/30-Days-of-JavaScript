@@ -1,0 +1,90 @@
+// even odd //
+function evenOdd(num){
+  if (num % 2 ==0) {
+    console.log("Number is even");
+  }else{
+    console.log("number is odd");
+  }
+}
+evenOdd(10)
+
+  // square //
+function squre(num){
+  return num * num ;
+}
+console.log(squre(4));
+
+// maxi of two numbers // 
+function maxiMumOfTwo(num1, num2){
+  if (num1>=num2) {
+      console.log( num1 +" is greater ");
+  }else{
+    console.log(num2 + " is greater");
+  }
+  return maxiMumOfTwo;
+}
+maxiMumOfTwo(4,9)
+
+  // concate two string // 
+
+function joinsStr(str1,str2){
+   return (str1.concat(str2))
+}
+console.log(joinsStr('pravin',"Shegamwar"));44
+
+
+  // arrow function //
+let sum =   (a,b)=>{
+  return a+b;
+}
+
+console.log(sum(3,4));
+
+
+// string contain a specific word // 
+let stringContain = (str4,char)=> str4.includes(char)
+    
+const str4 = "Namaste Duniya";
+const chartoFind = "Duniya"
+console.log(stringContain(str4,chartoFind));
+
+
+ // defalut parameter //  
+const mul = (num5, num6 = 6)=>{ return num5 * num6;}
+
+console.log(mul(3));
+
+ const person = (naam, age = 21)=>{
+  return `hello ${naam} and age is ${age}`
+ }
+ console.log(person("Pravin"));
+
+// higher order function // 
+const calManyTime = (fn,times)=>{
+  return ()=>{
+    for(let i = 0; i < times; i++){
+      fn()
+    }
+  }
+}
+
+const sayHello = () => console.log("hello");
+
+const cal = calManyTime(sayHello, 8)
+cal();
+
+ // higher order function // 
+const compseFunctions = (fn1,fn2)=>{
+  return (value) => {
+    return fn2(fn1(value))
+  }
+}
+
+const add2 = (x) => x + 2;
+
+const muktiply = (x) => x * 3;
+
+const addthenMultiply = compseFunctions(add2,muktiply)
+
+const result = addthenMultiply(5);
+console.log(result);
