@@ -1,0 +1,73 @@
+// Object Creation and Access //
+const book = {
+    title: "Master DSA",
+    auther : "Mr.XYZ",
+    year : 2005,
+
+   string: function(){
+        console.log(`Books Title is ${this.title}`);
+        console.log(`Books Auther is ${this.auther}`);
+    }
+
+};
+book.string()
+
+console.log(book.title);
+console.log(book["auther"]);
+
+
+// Object Methods //
+
+const book2 = {
+    title: "Master CS fundamentals",
+    author : "Mr.Xxz",
+    year : 2005,
+
+
+
+};
+
+ Object.defineProperty(book2, 'updateYear',{
+    value : function(newYear){
+        this.year = newYear
+    },
+    enumerable:false
+ })
+book2.updateYear(2004);
+console.log(book2);
+
+
+/// Nested Objects //
+
+const books = {
+    bookName : "Master DSA ",
+    author : "MR.xyz",
+
+    book5 :  {
+        bookName : "CS Fundamnetals",
+        author: "XXX"
+
+
+    },
+
+    book6 :{
+        bookName :"DBMS",
+        author : "ggjd"
+    }
+
+    
+
+
+}
+
+for( key in books){
+    console.log(`${key} `);
+}
+
+const bookNames = [
+    books.bookName,
+    books.book5.bookName,
+    books.book6.bookName
+]
+
+console.log(bookNames);
