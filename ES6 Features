@@ -1,0 +1,73 @@
+// Template Literals //
+
+let myName  = "Pravin";
+let age = 21;
+
+let lastName = "Shegamwar"
+
+console.log(`Hello ${myName} ${lastName} and you are ${age} old`);
+
+// Array Destructuring //
+let myArr = [1,2,3]
+
+let [a,b,c] = myArr;
+
+console.log(a);
+console.log(b);
+
+// obj Destructuring //
+ 
+let book = {
+   title : "DSA Master",
+   author: "Pravin Shegamwar",
+   price : 199
+
+}
+let {title, author} = book;
+
+console.log(title);
+console.log(author);
+
+
+
+
+// Spread n Rest Operator //
+
+ let arr = [1,3,4,5]
+
+ console.log([...arr,9,6]);
+ 
+
+ function sum(...numbers){
+    return numbers.reduce((total, number)=>total + number)
+ }
+
+console.log(sum(1,3,3,6,2,1));
+ 
+
+// default parameter //
+
+function mulOfTwoNum(num1, num2 = 1){
+    return num1 * num2;
+}
+
+console.log(mulOfTwoNum(3));
+
+// enhanced Object literals//
+
+
+const obj = {
+    myName:"pravin",
+
+    greet(){
+        console.log(`hello ${this.myName}`);
+    }
+}
+obj.greet()
+
+const propname = 'dynamicprop';
+
+const obj2= {
+    [propname] : 'this is dynamic property'
+}
+console.log(obj2);
