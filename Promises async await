@@ -1,0 +1,189 @@
+// Uderstanding Promises//
+
+// Create a promise that resolves with a message after a 2-second timeout and log the message to the console.//
+
+let promise = new Promise((resolve)=>{
+    setTimeout(()=>{
+        resolve("task1: Promise resolved after 2 seconds")
+    }, 2000)
+});
+
+promise.then((message)=>{
+    console.log(message);
+})
+
+
+
+//Create a promise that rejects with an error message after a 2-second timeout and handle the error using .catch()//
+let promise2 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject("Task2: Promise reject After 2 seconds")
+    }, 2000)
+});
+
+promise2.catch((error)=>{
+    console.error("error caught: " ,error);
+})
+
+
+// Chaining Promises//
+let fetchdata = new Promise((resolve, reject)=>{
+    setTimeout(() => {
+        resolve("Data is fetched from server")
+    }, 2000);
+});
+
+fetchdata
+.then(result=>{
+    console.log(result);
+});
+return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve("Data Processed")
+    },2000)
+})
+.then(result=>{
+    console.log(result);
+
+return new Promise((resolve,reject)=>{
+    setTimeout(() => {
+          resolve("Data saved")
+    }, 2000);
+});
+
+}).then(result=>{
+    console.log(result);
+}).catch(error=>{
+    console.error(error);
+})
+
+//: Write an async function that waits for a promise to resolve and then logs the resolved value.//
+async function asyncFunction1(){
+    let promise = new Promise((resolve,reject)=>{
+         setTimeout(() => {
+             resolve("Task4: Resolved value after 2 second")
+         }, 2000);
+    })
+
+    let result = await promise;
+
+    console.log(result);
+}
+
+asyncFunction1();
+
+
+//Write an async function that handles a rejected promise using try-catch and logs the error message.//
+async function asyncFunction2(){
+    let promise3 = new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            reject("task5: Rejected value after 2 seconds")
+        }, 3000);
+    });
+
+    try {
+        let result = await promise3;
+        console.log(result);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+asyncFunction2();
+
+
+// Fetching Data from an API
+// Task 6: Use the fetch API to get data from a public API and log the response data to the console using promises.
+// javascript
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+.then(response=>{
+    if (!response.ok) {
+        throw new Error("network response was not ok")
+    }
+    return response.json();
+})
+.then(data=>{
+    console.log("Task6: Data fetched using Promises:", data);
+})
+.catch(error=>{
+    console.log("there was a problem with fetch operation");
+});
+
+
+// Use the fetch API to get data from a public API and log the response data to the console using async/await.//
+async function fetchData2(){
+    try {
+        let response1 = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+        if(!response1.ok){
+            throw new Error("Network response is not ok")
+        } 
+        let data = await response1.json();
+        console.log("Task7: Data fetch using async/await:,",data);
+    } catch (error) {
+        console.error("There was a problem with fetch operation");
+        
+    }
+
+    
+}
+
+fetchData2();
+
+
+
+//Concurrent Promises
+//Task 8: Use Promise.all to wait for multiple promises to resolve and then log all their values.//
+let promise5 = new Promise((resolve, reject)=>{
+    setTimeout(() => {
+        resolve("Promise1 is resolve")
+    }, 1000);
+})
+
+let promise6 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve("promise 2 resolved")
+    }, 2000);
+})
+
+let promise7 = new Promise((resolve, reject)=>{
+    resolve("promise 3 resolved")
+})
+
+Promise.all([promise5,promise6,promise7])
+.then(value=>{
+    console.log("task 8: All promise resolved:", value);
+})
+.catch(error=>{
+    console.error("Error in promise.all:", error);
+})
+
+
+
+// Use Promise.race to log the value of the first promise that resolves among multiple promises.//
+
+let racePromise1 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve("race Promise 1 resolved first")
+    }, 1000);
+})
+
+let racePromise2 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve("race Promise 2 resolved first")
+    }, 2000);
+})
+
+let racePromise3 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve("race Promise 3 resolved first")
+    }, 1500);
+})
+
+Promise.race([racePromise1,racePromise2,racePromise3])
+.then(value=>{
+    console.log("task 9: First promise resolve", value);
+})
+.catch(error=>{
+    console.error("Error in Promise.race:", error);
+})
+
