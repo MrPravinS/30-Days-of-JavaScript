@@ -1,0 +1,194 @@
+// Basic Error Handling with Try-Catch
+function trowErroeExample(){
+    try {
+        throw new Error("this is intentional error")
+    } catch (error) {
+        console.log("caught an error:" , error.message);
+    }
+        
+    }
+      trowErroeExample();
+
+
+// Division Function with Error Handling//
+function divideNumbers(a,b){
+    if(b == 0){
+        throw new Error("Division by zero is not allowed")
+    }
+    return a/b;
+}
+
+try{
+    console.log(divideNumbers(10,5));
+    console.log(divideNumbers(10,0));
+}catch(error){
+    console.error("Error: " , error.message);
+
+}
+
+//  Finally block //
+function exampleFun(){
+    try {
+        console.log("try block: this is runs first");
+        console.log("an error occured");
+    } catch (error) {
+        console.error("catch block: error caught", error.message);
+    }finally{
+        console.log("finnaly block: this runs rgardless of the error");
+    }
+}
+
+exampleFun();
+
+
+function sum(a,b){
+    if(typeof a !== 'number' || b !== 'number'){
+        throw new Error("Both arguments must be numbers")
+    }
+    return a + b; 
+}
+
+try {
+    console.log(sum(3,5));
+    console.log(sum(2));
+} catch (e) {
+     
+    console.log("error:" ,e.message);
+}
+
+
+// Custom Error Objects
+
+// class CustomError extends Error{
+//     constructor(message){
+//         super(message);
+//         this.name = "Custom Error"
+//     }
+// }
+
+function customErrorExample(){
+    try{
+    throw new CustomError("this is custom error")
+}catch(error){
+  console.error(`${error.name}: ${error.message}`);
+}
+}
+customErrorExample();
+
+
+// Validate User Input
+
+class ValidationError extends Error{
+    constructor(message){
+        super(message);
+        this.name = "ValidationError"
+    }
+}
+
+
+function validateInput(input){
+    if(!input){
+        throw new ValidationError("Input Cannot be empty")
+    }
+    console.log("input is valid:", input);
+}
+
+try {
+    validateInput("Valid input");
+    validateInput("")
+    
+} catch (error) {
+    if (error instanceof ValidationError) {
+        console.error("Validation error:", error.message);
+    }else{
+        console.error("Unknown Error:", error.message);
+    }
+}
+
+
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error =>{
+    console.error("An error Occured:", error);
+  })
+
+
+// Error Handling in Promises
+
+
+function randomPromise(){
+    return new Promise((res, rej)=>{
+        const isSuccess = Math.random() > 0.5;
+
+        if (isSuccess) {
+            res("The operation was successfull")
+        }else{
+            rej("the Operation failed")
+        }
+    })
+} 
+
+randomPromise()
+.then(message => {
+    console.log(message);
+})
+.catch(error => {
+    console.error("Error:", error);
+});
+
+
+// Try-Catch in Async Function with Promises//
+
+ async function handleRandompromise(){
+    try {
+         const message  = await randomPromise();
+         console.log(message);
+
+    } catch (error) {
+        console.error("caught an err0r: ", error);
+        
+    }
+ }
+
+ handleRandompromise();
+
+
+// Graceful Error Handling in Fetch //
+
+fetch('https://invalid-url.com/data')
+.then(response => {
+    if(!response.ok){
+        throw new Error("Network response was not ok")
+    }
+    return response.json();
+})
+.then(dats => {
+    console.log(dats);
+})
+.catch(error => {
+    console.error("fetch Error:", error.message);
+});
+
+
+
+// Fetch API with Invalid URL in Async Function
+async function fetchData(){
+    try {
+
+        const response = await fetch('https://invalid-url.com/data');
+        if (!response.ok) {
+            throw new Error("Network response was not ok")
+        }
+        const data = await response.json();
+        console.log(data);
+        
+    } catch (error) {
+        console.error("Fetch Error");
+    }
+}
+
+fetchData();
+
