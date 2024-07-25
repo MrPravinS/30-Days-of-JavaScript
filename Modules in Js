@@ -120,3 +120,76 @@ axios.get('https://api.github.com/users/MrPravinS')
 }).catch((err) => {
     console.error("Error fetching data:", err);
 });
+
+
+
+/// module bundling //
+
+
+///Project Structure:
+my-project/
+├── dist/
+├── src/
+│   ├── index.js
+│   ├── greet.js
+│   └── farewell.js
+├── package.json
+└── webpack.config.js//
+
+
+//src/greet.js://
+export function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+
+//src/farewell.js://
+export function farewell(name) {
+    return `Goodbye, ${name}!`;
+}
+
+//src/index.js//
+import { greet } from './greet.js';
+import { farewell } from './farewell.js';
+
+console.log(greet('Alice'));
+console.log(farewell('Bob'));
+
+
+//3. Webpack Configuration://
+
+//To bundle these files, we'll set up Webpack.//
+
+//webpack.config.js://
+const path = require('path');
+
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    mode: 'development'
+};
+
+
+ //Steps to Bundle the Code:
+
+Initialize the Project:
+
+Open your terminal, navigate to your project folder, and run:
+bash
+Copy code
+npm init -y
+Install Webpack:
+
+Install Webpack and its CLI tool:
+bash
+Copy code
+npm install --save-dev webpack webpack-cli
+Run Webpack:
+
+To bundle your JavaScript files, run:
+bash
+Copy code
+npx webpack///
