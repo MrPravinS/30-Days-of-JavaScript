@@ -1,0 +1,122 @@
+// module_01.mjs//
+//creating and exporting modules //
+// import// 
+
+import { add, PI } from './modules_02.mjs';
+
+let addition = add(2,4)
+console.log(addition);
+console.log(add(2,4));
+console.log(PI);
+
+import { person } from "./modules_02.mjs";
+
+console.log(person);
+
+// name and default exports//
+
+import {add,sub,mul,div,remain} from './modules_02.mjs';
+
+console.log(add(2,54));
+console.log(sub(5,2));
+console.log(mul(20,4));
+console.log(div(50,5));
+console.log((remain(20,3)));
+
+
+import addition2 from './modules_02.mjs';
+
+console.log(addition2(2,4));
+
+
+import * as math from './modules_02.mjs';
+
+console.log(math.default(3,5));
+console.log(math.addd(3,5));
+console.log(math.PI );
+
+
+
+// third party//
+
+import axios from 'axios'
+
+axios.get('https://api.github.com/users/MrPravinS')
+.then((result) => {
+     console.log(result.data);
+}).catch((err) => {
+    console.error("Error fetching data:", err);
+});
+
+
+
+
+
+
+
+// module_01.mjs//
+// export //
+
+export function add(a,b){
+    return a + b;
+}
+
+// export const PI = 3.14;
+
+
+export const person = {
+   name: "pravin",
+   age: 21,
+
+  personAddress:{
+    email:"pravin@gmail.com",
+    phone:21345555
+  }
+}
+
+
+export function add(a,b){
+    return a + b;
+}
+
+export function sub(a,b){
+    return a - b;
+}
+
+export function mul(a,b){
+    return a * b;
+}
+
+export function div(a,b){
+    return a / b;
+}
+
+export function remain(a,b){
+    return a % b;
+}
+
+
+export default function add(a,b){
+    return a+b+a;
+}
+
+
+
+export default function multiply(a,b){
+    return a*b;
+}
+
+export function addd(a,b){
+    return a + b;
+}
+
+export const PI = 3.14;
+
+
+
+axios.get('https://api.github.com/users/MrPravinS')
+.then((result) => {
+     console.log(result.data);
+}).catch((err) => {
+    console.error("Error fetching data:", err);
+});
