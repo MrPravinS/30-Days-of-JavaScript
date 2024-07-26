@@ -1,0 +1,144 @@
+// Class defination //
+
+class Person{
+    name = "Pravin";
+    age = 21;
+
+    greet(){
+        console.log(`Hello ${this.name} and you are ${this.age} years old`);
+    }
+    updateAge(){
+        this.age = 22
+        console.log(`age is ${this.age}`);
+    }
+}
+
+let person2  = new Person();
+person2.greet();
+person2.updateAge();
+
+
+// // Class inhertance//
+
+class Student extends Person{
+    studentId = 12;
+   
+    detialsOfId(){
+        console.log(`The Student id is ${this.studentId}`);
+    }
+
+    greet(){
+        super.greet();
+        console.log(`Hello ${this.name} your Student id is ${this.studentId}`);
+    }
+} 
+
+let student = new Student()
+student.detialsOfId();
+student.greet()
+
+
+// Ststic method and properties
+
+class Person1{
+    static greet(){
+        console.log("Hello pravin how are you?..");
+    }
+}
+Person1.greet();
+
+
+class Student2 {
+    static studentCount = 0;
+    
+    constructor(name){
+        this.name = name;
+        Student2.studentCount++
+    }
+
+}
+
+const student1 = new Student2("Pravin");
+const student3 = new Student2("Ajay")
+
+
+console.log(`Total Student: ${Student2.studentCount}`);
+
+
+// Getters and Setters //
+
+class Person5{
+    constructor(firstName, lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        
+    }
+
+    get fullName(){
+        return `${this.firstName} ${this.lastName}`
+    }
+}
+
+const person5 = new Person5("Pravin", "Shegamwar")
+// console.log(person5.fullName);
+
+
+class Person6{
+    constructor(firstName, lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+        
+    }
+get fullName(){
+    return `${this.firstName} ${this.lastName}`
+}
+
+set fullName(name){
+    [this.firstName, this.lastName] = name.split(' ');
+}
+}
+
+person5.fullName = "Ajay Shegamwar";
+console.log(person5.fullName);
+
+
+//Private Fields//
+class Account{
+    #balance = 0;
+
+    deposit(amount){
+      if(amount > 0 ){
+        this.#balance += amount;
+        console.log(`Deposited: ${amount}`);
+      }else{
+        console.log("Deposit amount must be positive");
+      }
+    }
+
+    withdraw(amount){
+        if(amount > 0 && amount <= this.#balance){
+            this.#balance -= amount;
+            console.log(`Withdraw: ${amount}`);
+        }else{
+            console.log("Insufficient balance");
+        }
+    }
+    get balance(){
+        return this.#balance;
+    }
+}
+
+const account = new Account();
+
+account.deposit(200);
+console.log(`Balance: ${account.balance}`);
+
+account.withdraw(100);
+// console.log(`withdraw: ${account.balance}`);
+
+console.log(`balanced: ${account.balance}`);
+
+account.withdraw(100)
+// console.log(`withdraw: ${account.balance}`);
+console.log(`balanced: ${account.balance}`);
