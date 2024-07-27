@@ -1,0 +1,168 @@
+// Understanding closures//
+function outerFunction(){
+    let myName = "Pravin"
+
+
+
+    function innerFunction(){
+      console.log(`My name is: ${myName}`);
+    }
+    return innerFunction();
+}
+
+// console.log(outerFunction("Pravin"));
+
+let inner = outerFunction()  
+inner();   // if inner function dosnt have () then give () to varialble or give to function ()() when calling function//                                 ;
+
+
+
+function myCounter(){
+  let count = 0;
+
+  return function(){
+    count++;
+    return count
+  }
+
+}
+
+let counter1 = myCounter();
+console.log(counter1());
+
+// let count = 7;
+// console.log(count);
+
+
+// Practical closures //
+
+function greet(){
+  let name = " pravin";
+
+  function mygreet(){
+    console.log(`hello ${name}`);
+  }
+  return mygreet
+}
+
+let greet1 = greet();
+greet1()
+
+
+function createIdGenerator(){
+  let lastId = 0;
+
+  return function(){
+    lastId++;
+    return lastId;
+  }
+
+
+}
+
+const generateId = createIdGenerator();
+console.log(generateId()); //1
+console.log(generateId()); //2
+console.log(generateId()); //3
+console.log(generateId()); //4
+
+function greet(name){
+  return function(){
+    console.log(`hello ${name}`);
+  }
+}
+const myGreet = greet("Pravin");
+myGreet();
+
+// Closures in loop //
+// Task 5: Array of Functions Logging Index//
+function createFunctionArray(){
+  let functions = [];
+
+  for(let i = 0; i < 5; i++){
+    functions[i] = (function(index){
+      return function(){
+        console.log(index);
+      }
+    })(i);
+  }
+  return functions;
+}
+
+const functionsArray = createFunctionArray();
+functionsArray[0]();
+functionsArray[1]();
+functionsArray[2]();
+
+
+// Activity 4: Module Pattern
+// Task 6: Simple Module for Managing a Collection
+
+    const collectionModule = (function(){
+      let items = [];
+
+      return{
+        addition(item){
+          items.push(item)
+        },
+
+        removeItem(item){
+          const index = items.indexOf(item);
+          if(index > -1){
+            items.splice(index,1)
+          }
+        },
+        listIems(){
+          return items.slice();
+        }
+      };
+    })()
+
+    collectionModule.addition('item1');
+    collectionModule.addition('item2');
+    console.log(collectionModule.listIems());
+
+    collectionModule.removeItem('item1');
+    console.log(collectionModule.listIems());
+
+
+    // Memoization
+    // Task 7: Memoize Results of a Function
+
+    function memoize(fn){
+      const cache = {};
+
+     return function(...args){
+      const key = JSON.stringify(args);
+      if(cache[key]){
+        return cache[key]
+      }else{
+        const result = fn(...args);
+        cache[key] = result;
+        return result;
+      }
+     }
+    }
+
+    const addd = (a,b) => a + b;
+
+    const memoizedAdd = memoize(addd);
+
+    console.log(memoizedAdd(1,3));
+    console.log(memoizedAdd(1,3));
+
+
+    
+ // Memoized Factorial Function
+// Create a memoized version of a function that calculates the factorial of a number.
+
+
+const memoizedFactorial = memoize(function factorial(n){
+  if(n == 0 || n == 1){
+    return 1;
+  }
+  return n * factorial(n - 1);
+});
+
+console.log(memoizedFactorial(5));
+console.log(memoizedFactorial(4));
