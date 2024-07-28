@@ -1,0 +1,161 @@
+function factorial(x){
+    if(x == 0 || x == 1){
+        return 1;
+    }
+    return x + factorial(x - 1)
+}
+
+console.log(factorial(5));
+console.log(factorial(6));
+
+// Fibonacci
+
+function fibonacci(n){
+    if(n <= 1){
+        return n
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+console.log(fibonacci(5));
+console.log(fibonacci(6));
+
+
+// Recursion with Arrays
+// sum of element
+function sumArray(arr, n) {
+    if (n <= 0) {
+      return 0;
+    }
+    return arr[n - 1] + sumArray(arr, n - 1);
+  }
+  
+  // Test cases
+  console.log(sumArray([1, 2, 3, 4, 5], 5)); // 15
+  console.log(sumArray([10, 20, 30], 3));   // 60
+  
+
+
+// Maximum Element
+function maxArray(arr, n) {
+  if (n === 1) {
+    return arr[0];
+  }
+  return Math.max(arr[n - 1], maxArray(arr, n - 1));
+}
+
+// Test cases
+console.log(maxArray([1, 5, 3, 9, 2], 5)); // 9
+console.log(maxArray([7, 4, 6, 1, 8], 5)); // 8
+
+
+
+// Reverse String
+function reverseString(str) {
+  if (str === "") {
+    return "";
+  }
+  return reverseString(str.substr(1)) + str.charAt(0);
+}
+
+// Test cases
+console.log(reverseString("hello")); // "olleh"
+console.log(reverseString("world")); // "dlrow"
+
+
+// Palindrome Check
+function isPalindrome(str) {
+  if (str.length <= 1) {
+    return true;
+  }
+  if (str.charAt(0) !== str.charAt(str.length - 1)) {
+    return false;
+  }
+  return isPalindrome(str.slice(1, str.length - 1));
+}
+
+// Test cases
+console.log(isPalindrome("madam")); // true
+console.log(isPalindrome("hello")); // false
+
+
+
+// Recursive Search
+// Task 7: Binary Search
+function binarySearch(arr, target, start, end) {
+  if (start > end) {
+    return -1;
+  }
+  let mid = Math.floor((start + end) / 2);
+  if (arr[mid] === target) {
+    return mid;
+  } else if (arr[mid] > target) {
+    return binarySearch(arr, target, start, mid - 1);
+  } else {
+    return binarySearch(arr, target, mid + 1, end);
+  }
+}
+
+// Test cases
+console.log(binarySearch([1, 2, 3, 4, 5], 3, 0, 4)); // 2
+console.log(binarySearch([1, 2, 3, 4, 5], 6, 0, 4)); // -1
+
+
+// Count Occurrences
+function countOccurrences(arr, target, index = 0) {
+  if (index === arr.length) {
+    return 0;
+  }
+  return (arr[index] === target ? 1 : 0) + countOccurrences(arr, target, index + 1);
+}
+
+// Test cases
+console.log(countOccurrences([1, 2, 3, 2, 2, 4], 2)); // 3
+console.log(countOccurrences([1, 1, 1, 1, 1], 1)); 
+  // 5
+
+
+//   Tree Traversal (Optional)
+// Task 9: In-Order Traversal
+class TreeNode {
+  constructor(value, left = null, right = null) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+function inOrderTraversal(node) {
+  if (node === null) {
+    return;
+  }
+  inOrderTraversal(node.left);
+  console.log(node.value);
+  inOrderTraversal(node.right);
+}
+
+// Test case
+let root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.left.right = new TreeNode(5);
+inOrderTraversal(root); // 4 2 5 1 3
+
+
+
+// Depth of Binary Tree
+function treeDepth(node) {
+  if (node === null) {
+    return 0;
+  }
+  let leftDepth = treeDepth(node.left);
+  let rightDepth = treeDepth(node.right);
+  return Math.max(leftDepth, rightDepth) + 1;
+}
+
+// Test cases
+console.log(treeDepth(root)); // 3
+let anotherTree = new TreeNode(10);
+anotherTree.left = new TreeNode(20);
+anotherTree.left.left = new TreeNode(30);
+console.log(treeDepth(anotherTree)); // 3
