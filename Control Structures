@@ -116,3 +116,68 @@ console.log(evenOdd);
     console.log(year +" Is not leap year");
    }
 
+
+
+
+let password = 'ajaoayie'
+if (password.length == 8) {
+    console.log("Welcome");
+    
+}else if(password.length <= 8) {
+    console.log("Password is to short");
+    
+} else if(password.length >= 8){
+    console.log("Too long password , Password should be 8 characters");
+    
+}else{
+    console.log("Please provide a password");
+    
+}
+
+
+// switch statements
+
+let fruit = 'Appl'
+
+switch (fruit) {
+    case "Banana":
+    console.log("Banana is good!");
+     break;
+
+     case "orange":
+     console.log("I am not a fan of orange");
+     break;
+    
+    case "Apple":
+        console.log("How you like them apples?");
+        break;
+
+    default :
+    console.log("I never heard of that fruit");
+    
+}
+
+loop
+
+for(let i = 1; i <= 1000; i++){
+    console.log("Pravin", i);
+    
+}
+
+        
+
+     
+function isEven(num){
+    if(num % 2 == 0){
+        console.log("Even");
+        
+    }else{
+        console.log("Odd");
+        
+    }
+}
+isEven(29)
+
+
+
+
