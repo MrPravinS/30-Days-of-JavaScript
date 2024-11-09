@@ -181,3 +181,39 @@ isEven(29)
 
 
 
+
+
+// function fizBuzz(n){
+//     for(let i = 1; i <= n; i++){
+//         if(i % 3 == 0 && i % 5 == 0){
+//             console.log(i, "FizzBuzz");
+            
+//         }else if(i % 3 == 0 ){
+//             console.log(i, "Fizz");
+            
+//         }else if(i % 5 == 0){
+//             console.log(i , "Buzz");
+            
+//         }
+//         else{
+//             console.log("Non og this");
+            
+//         }
+//     }
+// }
+// fizBuzz(15)
+
+
+function trafficLight(color){
+    if(color == "red"){
+        console.log("Stop");
+        
+    }else if(color == "yellow"){
+        console.log("slow down");
+        
+    }else{
+        console.log("Go");
+        
+    }
+}
+trafficLight('green')
